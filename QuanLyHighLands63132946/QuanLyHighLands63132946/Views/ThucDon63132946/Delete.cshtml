@@ -1,0 +1,70 @@
+﻿@model QuanLyHighLands63132946.Models.THUCDON
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+
+        .btn-link:hover {
+            padding: 10px;
+        }
+
+    #menu {
+        margin-bottom: 10px;
+    }
+</style>
+<h2 style="color:red;"> Bạn có chắc chắn xóa thông tin này?</h2>
+
+<table style="font-size: 18px; margin-left: 5px;">
+    <tr>
+        <td>
+            <table>
+                <h3 style="margin-left:10px;">THÔNG TIN CHI TIẾT</h3>
+                <tr>
+                    <td rowspan="8"><img src="/Images/@Html.DisplayFor(model => model.hinhAnh)" width="100" height="100" /></td>
+                    <td>Mã món:</td>
+                    <td>@Html.DisplayFor(model => model.maMon)</td>
+                </tr>                
+                <tr>
+                    <td>Tên món:</td>
+                    <td>@Html.DisplayFor(model => model.tenMon)</td>
+                </tr>                                
+                <tr>
+                    <td>Giá:</td>
+                    <td>@Html.DisplayFor(model => model.gia)</td>
+                </tr>
+                <tr>
+                    <td>Loại:</td>
+                    <td>@Html.DisplayFor(model => model.LOAI.tenLoai)</td>
+                </tr>
+                <tr>
+                    <td>Nhà cung cấp:</td>
+                    <td>@Html.DisplayFor(model => model.NHACUNGCAP.tenNCC)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <div style="margin-left:150px;">
+            <input type="submit" value="Xóa" class="btn btn-default" />
+        </div>
+        @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" })
+    </div>
+}

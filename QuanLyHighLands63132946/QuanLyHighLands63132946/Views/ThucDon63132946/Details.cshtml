@@ -1,0 +1,68 @@
+﻿@model QuanLyHighLands63132946.Models.THUCDON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    .btn-link:hover {
+        padding: 10px;
+    }
+
+    #menu {
+        margin-bottom: 10px;
+    }
+</style>
+
+<table style="margin-left:5px; font-size: 18px;">
+    <tr>
+        <td>
+            <table>
+                <h3 style="margin-left:10px;">THÔNG TIN CHI TIẾT</h3>
+                <tr>
+                    <td rowspan="8"><img src="/Images/@Html.DisplayFor(model => model.hinhAnh)" width="200" height="200" /></td>
+                    <td>Mã món : </td>
+                    <td>@Html.DisplayFor(model => model.maMon)</td>
+                </tr>               
+                <tr>
+                    <td>Tên món : </td>
+                    <td>@Html.DisplayFor(model => model.tenMon)</td>
+                </tr>                      
+                <tr>
+                    <td>Giá : </td>
+                    <td>@Html.DisplayFor(model => model.gia)</td>
+                </tr>
+                <tr>
+                    <td>Loại : </td>
+                    <td>@Html.DisplayFor(model => model.LOAI.tenLoai)</td>
+                </tr>
+                <tr>
+                    <td>Nhà cung cấp : </td>
+                    <td>@Html.DisplayFor(model => model.NHACUNGCAP.tenNCC)</td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+<p>
+<p>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" }) |
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.maMon }, new { @class = "btn-link" })
+</p>

@@ -1,0 +1,92 @@
+﻿@model QuanLyHighLands63132946.Models.THUCDON
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+    .btn-link:hover {
+        padding: 10px;
+    }
+    #menu {
+        margin-bottom: 10px;
+    }
+</style>
+<h3 style="margin-left:10px;">THÔNG TIN MÓN ĂN</h3>
+@using (Html.BeginForm("Create", "ThucDon63132946", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.maMon, "Mã món ăn", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" value="@ViewBag.MaMon" disabled readonly class="form-control" />
+            @Html.ValidationMessageFor(model => model.maMon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.tenMon, "Tên món ăn", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.tenMon, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.tenMon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.gia, "Giá", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hinhAnh, "Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" style="height:30px;" name="hinhAnh" accept="image/*" required />
+            @Html.ValidationMessageFor(model => model.hinhAnh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.maLoai, "Mã loại", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("maLoai", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.maLoai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.maNCC, "Mã nhà cung cấp", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("maNCC", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.maNCC, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm mới" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" })
+</div>
+

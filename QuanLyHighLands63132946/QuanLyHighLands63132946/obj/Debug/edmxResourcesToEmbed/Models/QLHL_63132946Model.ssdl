@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QUANLYQUANCAFE_63132946Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BILL">
+    <Key>
+      <PropertyRef Name="maBill" />
+    </Key>
+    <Property Name="maBill" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tong" Type="int" Nullable="false" />
+    <Property Name="maNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="maMon" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="maKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CHUCVU">
+    <Key>
+      <PropertyRef Name="maCV" />
+    </Key>
+    <Property Name="maCV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenCV" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="hoKH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="tenKH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diemTichLuy" Type="int" Nullable="false" />
+    <Property Name="maLoaiKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOAI">
+    <Key>
+      <PropertyRef Name="maLoai" />
+    </Key>
+    <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenLoai" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOAIKHACHHANG">
+    <Key>
+      <PropertyRef Name="maLoaiKH" />
+    </Key>
+    <Property Name="maLoaiKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenLoaiKH" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="giamGia" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="maNCC" />
+    </Key>
+    <Property Name="maNCC" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenNCC" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="maNV" />
+    </Key>
+    <Property Name="maNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="hoNV" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="tenNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="gioiTinh" Type="bit" />
+    <Property Name="ngaySinh" Type="date" />
+    <Property Name="luong" Type="int" />
+    <Property Name="anhNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="maCV" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QUANTRI">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Admin" Type="bit" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="THUCDON">
+    <Key>
+      <PropertyRef Name="maMon" />
+    </Key>
+    <Property Name="maMon" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenMon" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="gia" Type="float" Nullable="false" />
+    <Property Name="hinhAnh" Type="nvarchar" MaxLength="50" />
+    <Property Name="maNCC" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BILL__maKH__5FB337D6">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+    <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="maKH" />
+      </Principal>
+      <Dependent Role="BILL">
+        <PropertyRef Name="maKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BILL__maMon__5EBF139D">
+    <End Role="THUCDON" Type="Self.THUCDON" Multiplicity="1" />
+    <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUCDON">
+        <PropertyRef Name="maMon" />
+      </Principal>
+      <Dependent Role="BILL">
+        <PropertyRef Name="maMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BILL__maNV__5DCAEF64">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="BILL" Type="Self.BILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="maNV" />
+      </Principal>
+      <Dependent Role="BILL">
+        <PropertyRef Name="maNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KHACHHANG__maLoa__4BAC3F29">
+    <End Role="LOAIKHACHHANG" Type="Self.LOAIKHACHHANG" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIKHACHHANG">
+        <PropertyRef Name="maLoaiKH" />
+      </Principal>
+      <Dependent Role="KHACHHANG">
+        <PropertyRef Name="maLoaiKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHANVIEN__maCV__534D60F1">
+    <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCVU">
+        <PropertyRef Name="maCV" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="maCV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THUCDON__maLoai__5AEE82B9">
+    <End Role="LOAI" Type="Self.LOAI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="THUCDON" Type="Self.THUCDON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAI">
+        <PropertyRef Name="maLoai" />
+      </Principal>
+      <Dependent Role="THUCDON">
+        <PropertyRef Name="maLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__THUCDON__maNCC__59FA5E80">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="THUCDON" Type="Self.THUCDON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="maNCC" />
+      </Principal>
+      <Dependent Role="THUCDON">
+        <PropertyRef Name="maNCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="QUANLYQUANCAFE_63132946ModelStoreContainer">
+    <EntitySet Name="BILL" EntityType="Self.BILL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUCVU" EntityType="Self.CHUCVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIKHACHHANG" EntityType="Self.LOAIKHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUANTRI" EntityType="Self.QUANTRI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THUCDON" EntityType="Self.THUCDON" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BILL__maKH__5FB337D6" Association="Self.FK__BILL__maKH__5FB337D6">
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+      <End Role="BILL" EntitySet="BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BILL__maMon__5EBF139D" Association="Self.FK__BILL__maMon__5EBF139D">
+      <End Role="THUCDON" EntitySet="THUCDON" />
+      <End Role="BILL" EntitySet="BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BILL__maNV__5DCAEF64" Association="Self.FK__BILL__maNV__5DCAEF64">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="BILL" EntitySet="BILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KHACHHANG__maLoa__4BAC3F29" Association="Self.FK__KHACHHANG__maLoa__4BAC3F29">
+      <End Role="LOAIKHACHHANG" EntitySet="LOAIKHACHHANG" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHANVIEN__maCV__534D60F1" Association="Self.FK__NHANVIEN__maCV__534D60F1">
+      <End Role="CHUCVU" EntitySet="CHUCVU" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THUCDON__maLoai__5AEE82B9" Association="Self.FK__THUCDON__maLoai__5AEE82B9">
+      <End Role="LOAI" EntitySet="LOAI" />
+      <End Role="THUCDON" EntitySet="THUCDON" />
+    </AssociationSet>
+    <AssociationSet Name="FK__THUCDON__maNCC__59FA5E80" Association="Self.FK__THUCDON__maNCC__59FA5E80">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAP" />
+      <End Role="THUCDON" EntitySet="THUCDON" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

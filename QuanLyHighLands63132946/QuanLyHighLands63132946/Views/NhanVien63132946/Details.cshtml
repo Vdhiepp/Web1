@@ -1,0 +1,79 @@
+﻿@model QuanLyHighLands63132946.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    string gtinh = "";
+}
+
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+    p {
+        margin-top: 10px;
+    }
+    .btn-link:hover {
+        padding: 10px;
+    }
+</style>
+<table style="margin-left:5px; font-size: 18px;">
+    <tr>
+        <td>
+            <table>
+                <h3 style="margin-left:10px;">THÔNG TIN CHI TIẾT</h3>               
+                <tr>
+                    <td rowspan="8"><img src="/Images/@Html.DisplayFor(model => model.anhNV)" width="100" height="100" /></td>
+                    <td>Mã nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.maNV)</td>
+                </tr>
+                <tr>
+                    <td>Họ nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.hoNV)</td>
+                </tr>
+                <tr>
+                    <td>Tên nhân viên:</td>
+                    <td>@Html.DisplayFor(model => model.tenNV)</td>
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td>
+                        @{if (Model.gioiTinh == true)
+                            { gtinh = "Nam"; }
+                            else
+                            { gtinh = "Nữ"; }
+                        }
+                        @gtinh
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td>@Html.DisplayFor(model => model.ngaySinh)</td>
+                </tr>
+                <tr>
+                    <td>Lương:</td>
+                    <td>@Html.DisplayFor(model => model.luong)</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Html.DisplayFor(model => model.diaChi)</td>
+                </tr>
+                <tr>
+                    <td>Chức vụ:</td>
+                    <td>@Html.DisplayFor(model => model.CHUCVU.tenCV)</td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" }) |
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.maNV }, new { @class = "btn-link" })
+</p>

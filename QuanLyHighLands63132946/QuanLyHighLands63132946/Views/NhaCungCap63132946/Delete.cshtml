@@ -1,0 +1,71 @@
+﻿@model QuanLyHighLands63132946.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+
+        .btn-link:hover {
+            padding: 10px;
+        }
+
+    #menu {
+        margin-bottom: 10px;
+    }
+</style>
+<h2 style="color:red;"> Bạn có chắc chắn xóa thông tin này?</h2>
+<h3 style="margin-left:10px;">THÔNG TIN CHI TIẾT</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã nhà cung cấp :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maNCC)
+        </dd>
+
+        <dt>
+            Tên nhà cung cấp :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNCC)
+        </dd>
+
+        <dt>
+            Địa chỉ :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <div style="margin-left:150px;">
+                <input type="submit" value="Xóa" class="btn btn-default" />
+            </div>
+            @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" })
+        </div>
+    }
+</div>

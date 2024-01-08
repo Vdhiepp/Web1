@@ -1,0 +1,66 @@
+﻿@model ThiGK_63132946.Models.QUANAO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QUANAO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenQA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenQA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XuatXu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XuatXu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnhMH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOAIQUANAO.TenLQA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIQUANAO.TenLQA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaQA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

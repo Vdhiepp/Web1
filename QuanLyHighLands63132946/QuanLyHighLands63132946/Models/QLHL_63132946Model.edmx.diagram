@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="914d967eebab4ad2ada134a75a6f2d57" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.BILL" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.CHUCVU" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.KHACHHANG" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.LOAI" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.LOAIKHACHHANG" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.NHACUNGCAP" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.NHANVIEN" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.QUANTRI" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.sysdiagram" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLYQUANCAFE_63132946Model.THUCDON" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__BILL__maKH__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__BILL__maMon__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__BILL__maNV__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__NHANVIEN__maCV__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__KHACHHANG__maLoa__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__THUCDON__maLoai__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLYQUANCAFE_63132946Model.FK__THUCDON__maNCC__59FA5E80" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

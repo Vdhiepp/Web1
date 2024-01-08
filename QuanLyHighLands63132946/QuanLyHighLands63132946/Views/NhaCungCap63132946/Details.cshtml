@@ -1,0 +1,65 @@
+﻿@model QuanLyHighLands63132946.Models.NHACUNGCAP
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style type="text/css">
+    body {
+        background-color: white;
+    }
+
+    .btn-link {
+        color: black;
+        padding: 10px;
+        background-color: none;
+        font-weight: bold;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    .btn-link:hover {
+        padding: 10px;
+    }
+
+    #menu {
+        margin-bottom: 10px;
+    }
+</style>
+<h3 style="margin-left:10px;">THÔNG TIN CHI TIẾT</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mã nhà cung cấp :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maNCC)
+        </dd>
+
+        <dt>
+            Tên nhà cung cấp :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNCC)
+        </dd>
+
+        <dt>
+            Địa chỉ :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Quay lại", "Index", null, new { @class = "btn-link" }) |
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.maNCC }, new { @class = "btn-link" })
+</p>

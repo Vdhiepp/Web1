@@ -20,19 +20,15 @@ namespace KT0720VoDaiHiep_63132946.Controllers
             var sINHVIENs = db.SINHVIENs.Include(s => s.LOP);
             return View(sINHVIENs.ToList());
         }
-        public ActionResult TimKiem_63132946()
-        {
-            var sinhViens = db.SINHVIENs.Include(n => n.LOP);
-            return View(sinhViens.ToList());
-        }
-        [HttpPost]
-        //tìm kiếm theo 1 tiêu chí
-        public ActionResult TimKiem_63132946(string maSV, string hoTen)
-        {
+        [HttpGet]
 
-            var sinhViens = db.SINHVIENs.SqlQuery("exec NhanVien_TimKiem2TC '" + maSV + "','" + hoTen + "' ");
-            /// var nhanViens = db.NhanViens.SqlQuery("SELECT * FROM NhanVien WHERE MaNV='" + maNV + "'");
-            //var nhanViens = db.NhanViens.Where(abc => abc.MaNV.Contains(maNV));
+        public ActionResult TimKiem_63132946(string maSV = "", string hoTen = "")
+        {
+            ViewBag.maSV = maSV;
+            ViewBag.hoTen = hoTen;            
+            var sinhViens = db.SINHVIENs.SqlQuery("SinhVien_TimKiem'" + maSV + "','" + hoTen + "'");
+            if (sinhViens.Count() == 0)
+                ViewBag.TB = "Không có thông tin tìm kiếm.";
             return View(sinhViens.ToList());
         }
         // GET: SinhVien0720_63132946/Details/5
@@ -98,9 +94,18 @@ namespace KT0720VoDaiHiep_63132946.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaSV,HoSV,TenSV,NgaySinh,GioiTinh,AnhSV,DiaChi,MaLop")] SINHVIEN sINHVIEN)
         {
+            //khi người dùng chọn file ảnh bất kỳ sẽ chép vào thư mục images
+            //System.Web.HttpPostedFileBase Avatar;
+            var imgSV = Request.Files["Avatar"];
+            //Lấy thông tin từ input type=file có tên Avatar
+            string postedFileName = System.IO.Path.GetFileName(imgSV.FileName);
+            //Lưu hình đại diện về Server
+            var path = Server.MapPath("/Images/" + postedFileName);
+            imgSV.SaveAs(path);
             if (ModelState.IsValid)
             {
-                db.Entry(sINHVIEN).State = EntityState.Modified;
+                sINHVIEN.AnhSV = postedFileName;
+                db.SINHVIENs.Add(sINHVIEN);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

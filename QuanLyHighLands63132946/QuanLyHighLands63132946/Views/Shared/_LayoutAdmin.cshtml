@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/styleAdmin.css" rel="stylesheet" />
+</head>
+<body style="margin-top:0px;">
+    <div id="banner">
+        <img src="~/Images/logo.png" width="90" height="70">
+        <p>HỆ THỐNG QUẢN LÝ HIGHLANDS COFFEE</p>
+    </div>
+    <div id="menu" style="padding-top:10px;">
+        <div id="menu-btn">
+            @Html.ActionLink("GIỚI THIỆU", "../Home/GioiThieu63132946", new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("TIN TỨC", "../Home/TinTuc63132946", new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("MENU", "../ThucDon63132946/Menu63132946", new { @class = "a" })&nbsp;|&nbsp;
+            @Html.ActionLink("KHÁCH HÀNG", "../KhachHang63132946/Index", new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("NHÂN VIÊN", "../NhanVien63132946/Index", new { @class = "a" }) &nbsp;|&nbsp;
+            @Html.ActionLink("NHÀ CUNG CẤP", "../NhaCungCap63132946/Index", new { @class = "a" })
+
+        </div>
+        <hr style="display: block;border-top: 1px solid white;  margin: 8px 0;" />
+        <div>
+            <p align="right">  @ViewBag.NguoiDung</p>
+        </div>
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    <div id="footer">
+        Copyright &copy; @DateTime.Now.Year
+    </div>
+</body>
+</html>

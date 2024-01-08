@@ -1,0 +1,145 @@
+﻿@model IEnumerable<QuanLyHighLands63132946.Models.THUCDON>
+
+@{
+    ViewBag.Title = "Thực Đơn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var groupedMenu = Model
+                        .Where(item => item.LOAI.tenLoai == "Trà") // Lọc chỉ các món có loại là "Cafe"
+                        .GroupBy(item => item.LOAI.tenLoai)
+                        .ToList();
+}
+
+<head>
+    <style type="text/css">
+        .grid-footer {
+            color: #000;
+            font: 17px Calibri;
+            text-align: center;
+            font-weight: bold;
+        }
+        #gridContent table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 25px;
+        }
+
+        #gridContent th, #gridContent td {
+            text-align: center;
+            padding: 10px;
+        }
+            .grid-footer a {
+                background-color: #ffffff;
+                color: blue;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                padding: 1px 10px 2px 10px;
+            }
+
+                .grid-footer a:active, a:hover {
+                    background-color: #ffffff;
+                    color: #FFAD33;
+                    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                }
+
+        .alternatingRowStyle {
+            background-color: aliceblue;
+        }
+
+        table .table1 {
+            text-align: left;
+            margin-left: 0px;
+            margin-right: 0px;
+            width: 800px;
+        }
+
+        .tr, .td {
+            text-align: left;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #gridContent a {
+            color: #53382c;
+            padding: 5px;
+        }
+
+            #gridContent a:hover {
+                padding: 5px;
+                text-decoration: none;
+            }
+
+        body {
+            background-color: white;
+        }
+
+        #menu-mon {
+            background-color: #53382c;
+            float: left;
+            width: 100%;
+            color: #53382c;
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+            #menu-mon a {
+                color: #f5cf9f;
+                margin-left: 10px;
+            }
+
+                #menu-mon a:hover {
+                    padding: 0px;
+                    background-color: #53382c;
+                    color: white;
+                }
+
+        .img-thumbnail {
+            width: 300px;
+            height: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #53382c;
+            padding-top: 50px;
+            padding-bottom: 10px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<div id="menu-mon">
+    @Html.ActionLink("COFFEE", "../ThucDon63132946/COFFEE63132946", new { @class = "a" }) &nbsp;|&nbsp;
+    @Html.ActionLink("PHINDI", "../ThucDon63132946/PHINDI63132946", new { @class = "a" }) &nbsp;|&nbsp;
+    @Html.ActionLink("ESPRESSO", "../ThucDon63132946/ESPRESSO63132946", new { @class = "a" })&nbsp;|&nbsp;
+    @Html.ActionLink("TEA", "../ThucDon63132946/TEA63132946", new { @class = "a" }) &nbsp;|&nbsp;
+    @Html.ActionLink("FREEZE", "../ThucDon63132946/FREEZE63132946", new { @class = "a" }) &nbsp;|&nbsp;
+    @Html.ActionLink("CAKE", "../ThucDon63132946/CAKE63132946", new { @class = "a" }) &nbsp;|&nbsp;
+    @Html.ActionLink("OTHER", "../ThucDon63132946/OTHER63132946", new { @class = "a" })
+</div>
+<div id="gridContent">
+    @ViewBag.TB
+
+    @foreach (var group in groupedMenu)
+    {
+        <h2>TEA</h2>
+
+
+        var grid = new WebGrid(group, canPage: true, defaultSort: "tenMon", rowsPerPage: 3);
+
+        @grid.GetHtml(
+         tableStyle: "table table-bordered table-hover",
+         footerStyle: "grid-footer",
+         fillEmptyRows: true,
+         mode: WebGridPagerModes.Numeric,
+         alternatingRowStyle: "alternatingRowStyle",
+         columns: new[]  // Các cột trong grid
+     {
+    grid.Column("STT",format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex),
+    grid.Column("hinhAnh","Ảnh minh họa", format: (item) => new HtmlString("<img src= '" + Url.Content("~/Images/" + item.hinhAnh) + "' alt='Ảnh minh họa' class='img-thumbnail' />")),
+    grid.Column("tenMon","Tên món"),
+    grid.Column("gia","Giá"),
+
+}
+        )
+    }
+</div>
